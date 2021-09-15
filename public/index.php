@@ -11,7 +11,7 @@ $container = new Container();
 $container->set('templating', function(){
     return new Mustache_Engine([
         'loader' => new Mustache_Loader_FilesystemLoader(
-                __DIR__.'/../templates',
+                __DIR__ .'/../templates',
                 ['extension' => '']
         )
     ]);
@@ -22,9 +22,9 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 
 $app->get('/', 'App\Controller\AlbumsController:default');
+$app->get('/details/{id}', 'App\Controller\AlbumsController:details');
+
 $app->get('/search', 'App\Controller\AlbumsController:search');
-
 $app->any('/form', 'App\Controller\AlbumsController:form');
-
 
 $app->run();
